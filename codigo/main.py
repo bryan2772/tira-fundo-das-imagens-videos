@@ -16,7 +16,7 @@ def remover_fundo(imagem):
     blur = cv2.GaussianBlur(gray, (5, 5), 0)
     
     # Passo 3: Aplicar limiarização para segmentação
-    _, thresh = cv2.threshold(blur, 127, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+    _, thresh = cv2.threshold(blur, 100, 255, cv2.THRESH_BINARY_INV)
     
     # Passo 4: Refinamento com operações morfológicas
     kernel = np.ones((3, 3), np.uint8)
