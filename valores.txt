@@ -1,111 +1,62 @@
-lampada
-(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 171, 15)
-
-((10,10), np.uint8)
-(mask, cv2.MORPH_CLOSE, kernel, iterations=20)
-(mask, (171, 171), 0)
-
-corruja
-(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 3, 11)
-
-
-= np.ones((5,5), np.uint8)
-(mask, cv2.MORPH_CLOSE, kernel, iterations=35)
+corruja:
+(, 3, 11)
+= ((5,5), np.uint8)
+( iterations=35)
 (mask, (181, 181), 0)
 
 
-tubarao:
- thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,171,20)
-plt.imshow(thresh, cmap='gray')
-plt.axis("off")
-plt.show()
 
-# %%
+
+passaro azul:
+(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,251,40)
 # Inverter a máscara para que o objeto fique branco e o fundo preto
-mask = cv2.bitwise_not(thresh)
-plt.imshow(mask, cmap='gray')
-plt.axis("off")
-plt.show()
+kernel = np.ones((3,3), np.uint8)
+mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=30)
+mask = cv2.GaussianBlur(mask, (131,131), 0)
 
-# %%
-# Remover pequenos ruídos e suavizar a máscara com operações de morfologia
-kernel = np.ones((2,2), np.uint8)
-mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=2)
-mask = cv2.GaussianBlur(mask, (39,39), 0)
+
+
+
+lampada:
+(171, 15)
+((10,10), np.uint8)
+( iterations=20)
+(mask, (171, 171), 0)
+
+
 
 
 flor:
 thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,351,10)
-plt.imshow(thresh, cmap='gray')
-plt.axis("off")
-plt.show()
-
-# %%
-# Inverter a máscara para que o objeto fique branco e o fundo preto
-mask = cv2.bitwise_not(thresh)
-plt.imshow(mask, cmap='gray')
-plt.axis("off")
-plt.show()
-
-# %%
-# Remover pequenos ruídos e suavizar a máscara com operações de morfologia
 kernel = np.ones((3,3), np.uint8)
 mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=2)
 mask = cv2.GaussianBlur(mask, (151,151), 0)
 
-girassoeis: thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,451,65)
-plt.imshow(thresh, cmap='gray')
-plt.axis("off")
-plt.show()
 
-# %%
-# Inverter a máscara para que o objeto fique branco e o fundo preto
-mask = cv2.bitwise_not(thresh)
-plt.imshow(mask, cmap='gray')
-plt.axis("off")
-plt.show()
 
-# %%
-# Remover pequenos ruídos e suavizar a máscara com operações de morfologia
+
+tubarao:
+(,171,20)
+((2,2), np.uint8)
+ iterations=2)
+mask = cv2.GaussianBlur(mask, (39,39), 0)
+
+
+
+
+girassoeis:
+ thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,451,65)
 kernel = np.ones((7,7), np.uint8)
 mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=25)
 mask = cv2.GaussianBlur(mask, (351,351), 0)
 
+
+
+
 homen:
 thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,751,45)
-plt.imshow(thresh, cmap='gray')
-plt.axis("off")
-plt.show()
-
-# %%
-# Inverter a máscara para que o objeto fique branco e o fundo preto
-mask = cv2.bitwise_not(thresh)
-plt.imshow(mask, cmap='gray')
-plt.axis("off")
-plt.show()
-
-# %%
-# Remover pequenos ruídos e suavizar a máscara com operações de morfologia
 kernel = np.ones((3,3), np.uint8)
 mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=20)
 mask = cv2.GaussianBlur(mask, (31,31), 0)
 
-passaro azul:
-thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,251,40)
-plt.imshow(thresh, cmap='gray')
-plt.axis("off")
-plt.show()
-
-# %%
-# Inverter a máscara para que o objeto fique branco e o fundo preto
-mask = cv2.bitwise_not(thresh)
-plt.imshow(mask, cmap='gray')
-plt.axis("off")
-plt.show()
-
-# %%
-# Remover pequenos ruídos e suavizar a máscara com operações de morfologia
-kernel = np.ones((3,3), np.uint8)
-mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=30)
-mask = cv2.GaussianBlur(mask, (131,131), 0)
 
