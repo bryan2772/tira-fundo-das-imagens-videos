@@ -3,7 +3,7 @@ from tkinter import *
 from PIL import Image
 from PIL import ImageTk
 from tkinter import filedialog
-
+import os
 import cv2
 import numpy as np
 
@@ -73,6 +73,9 @@ class GrabCutGUI(Frame):
                 for y in range(self.imagemOpenCV.shape[0]):
                     if maskFinal[y][x] == 0:
                         imgFinal[y][x][:] = 255 
+            
+            # Salvar a imagem sem fundo
+            cv2.imwrite("homengrabcut.jpg", imgFinal)
 
             # Converter de volta do OpenCV para Tkinter
             imgFinal = cv2.cvtColor(imgFinal, cv2.COLOR_BGR2RGB)
