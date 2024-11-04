@@ -8,11 +8,11 @@ corruja:
 
 
 passaro azul:
-(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,251,40)
-# Inverter a máscara para que o objeto fique branco e o fundo preto
+ 49, 35)
+
 kernel = np.ones((3,3), np.uint8)
-mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=30)
-mask = cv2.GaussianBlur(mask, (131,131), 0)
+iterations=25)
+(mask, (295, 295), 0)
 
 
 
