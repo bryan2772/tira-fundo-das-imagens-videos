@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Carregar a imagem
-img = cv2.imread("/mnt/nvme0n1p2/doc/Faculdade-BCC/BCC-8º periodo/jesga/trabalho1/ImagensPDI/stockvault-bulb128619.jpg")
+img = cv2.imread("../ImagensPDI/stockvault-bulb128619.jpg")
 rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 plt.imshow(rgb, cmap='gray')
 plt.axis("off")

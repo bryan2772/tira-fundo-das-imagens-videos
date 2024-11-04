@@ -3,8 +3,8 @@ import os
 from PIL import Image
 
 # Caminhos dos diretórios de entrada e saída
-input_dir = '/mnt/nvme1n1p2/doc/Faculdade-BCC/BCC-8º periodo/jesga/trabalho1/ImagensPDI'
-output_dir = '/mnt/nvme1n1p2/doc/Faculdade-BCC/BCC-8º periodo/jesga/trabalho1/results/'
+input_dir = '../ImagensPDI'
+output_dir = '../Results/'
 
 # Certifica-se de que o diretório de saída existe
 os.makedirs(output_dir, exist_ok=True)

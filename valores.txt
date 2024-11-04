@@ -1,62 +1,43 @@
-corruja:
-(, 3, 11)
-= ((5,5), np.uint8)
-( iterations=35)
-(mask, (181, 181), 0)
+# Parâmetros de Remoção de Fundo por Imagem
 
+1. **Coruja**
+   - Limiar Adaptativo: (3, 11)
+   - Tamanho do Kernel: (5, 5), np.uint8
+   - Iterações de Operação Morfológica: 35
+   - Desfoque Gaussiano: (181, 181), sigma=0
 
+2. **Pássaro Azul**
+   - Limiar Adaptativo: (49, 35)
+   - Tamanho do Kernel: (3, 3), np.uint8
+   - Iterações de Operação Morfológica: 25
+   - Desfoque Gaussiano: (295, 295), sigma=0
 
+3. **Lâmpada**
+   - Limiar Adaptativo: (171, 15)
+   - Tamanho do Kernel: (10, 10), np.uint8
+   - Iterações de Operação Morfológica: 20
+   - Desfoque Gaussiano: (171, 171), sigma=0
 
-passaro azul:
- 49, 35)
+4. **Flor**
+   - Limiar Adaptativo: `cv2.ADAPTIVE_THRESH_GAUSSIAN_C`, `cv2.THRESH_BINARY`, bloco de tamanho 351, constante subtraída 10
+   - Tamanho do Kernel: (3, 3), np.uint8
+   - Iterações de Operação Morfológica: 2
+   - Desfoque Gaussiano: (151, 151), sigma=0
 
-kernel = np.ones((3,3), np.uint8)
-iterations=25)
-(mask, (295, 295), 0)
+5. **Tubarão**
+   - Limiar Adaptativo: (171, 20)
+   - Tamanho do Kernel: (2, 2), np.uint8
+   - Iterações de Operação Morfológica: 2
+   - Desfoque Gaussiano: (39, 39), sigma=0
 
+6. **Girassóis**
+   - Limiar Adaptativo: `cv2.ADAPTIVE_THRESH_GAUSSIAN_C`, `cv2.THRESH_BINARY`, bloco de tamanho 451, constante subtraída 65
+   - Tamanho do Kernel: (7, 7), np.uint8
+   - Iterações de Operação Morfológica: 25
+   - Desfoque Gaussiano: (351, 351), sigma=0
 
-
-
-lampada:
-(171, 15)
-((10,10), np.uint8)
-( iterations=20)
-(mask, (171, 171), 0)
-
-
-
-
-flor:
-thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,351,10)
-kernel = np.ones((3,3), np.uint8)
-mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=2)
-mask = cv2.GaussianBlur(mask, (151,151), 0)
-
-
-
-
-tubarao:
-(,171,20)
-((2,2), np.uint8)
- iterations=2)
-mask = cv2.GaussianBlur(mask, (39,39), 0)
-
-
-
-
-girassoeis:
- thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,451,65)
-kernel = np.ones((7,7), np.uint8)
-mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=25)
-mask = cv2.GaussianBlur(mask, (351,351), 0)
-
-
-
-
-homen:
-thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,751,45)
-kernel = np.ones((3,3), np.uint8)
-mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=20)
-mask = cv2.GaussianBlur(mask, (31,31), 0)
-
-
+7. **Homem**
+   - Limiar Adaptativo: `cv2.ADAPTIVE_THRESH_GAUSSIAN_C`, `cv2.THRESH_BINARY`, bloco de tamanho 751, constante subtraída 45
+   - Tamanho do Kernel: (3, 3), np.uint8
+   - Iterações de Operação Morfológica: 20
+   - Desfoque Gaussiano: (31, 31), sigma=0

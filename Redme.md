@@ -1,51 +1,72 @@
+# Projeto de Remoção de Fundo em Imagens e Vídeos
 
-# Projeto de Remoção de Fundo em Imagens
+## Autores: Ryan Alves e Victoria Moraes
 
 ## Descrição do Projeto
-Este projeto visa desenvolver um algoritmo capaz de remover o fundo de imagens automaticamente, aplicando técnicas de processamento em escala de cinza para facilitar a segmentação. O objetivo é criar um método robusto que possa identificar o fundo e removê-lo, deixando apenas os objetos de interesse na imagem. Os resultados serão apresentados em uma sessão de teste marcada para o dia 04/11.
+Este projeto aplica e compara diversas técnicas de segmentação para remoção automática de fundo em imagens e vídeos, destacando objetos de interesse. Foram implementadas cinco abordagens principais: YOLO, rembg, GrabCut, limiarização adaptativa e limiarização simples. Os métodos foram testados em diferentes condições, incluindo a remoção de fundo em tempo real com YOLO, que apresentou o melhor desempenho.
 
 ## Objetivos Específicos
-1. Converter as imagens originais para escala de cinza.
-2. Aplicar uma técnica de segmentação que identifique o primeiro plano e o fundo.
-3. Ajustar o contraste e brilho para aprimorar a separação entre objeto e fundo.
-4. Remover o fundo das imagens selecionadas.
-5. Demonstrar os resultados obtidos.
+1. Implementar diferentes métodos de segmentação para remover fundos de imagens e vídeos.
+2. Comparar a eficácia de cada método em termos de precisão e qualidade visual.
+3. Apresentar os resultados obtidos, destacando as vantagens e limitações de cada técnica.
 
-## Passo a Passo do Algoritmo
+## Explicação de Cada Código
 
-1. **Carregar as Imagens**: Utilizar uma biblioteca como OpenCV ou PIL para carregar as imagens originais.
+### 1. **Código com YOLO para Remoção de Fundo em Tempo Real**
+   - **Descrição**: Utiliza o modelo YOLO para segmentação em tempo real, detectando e isolando objetos enquanto o vídeo é capturado.
+   - **Processo**: Cada quadro de vídeo é analisado em tempo real, com YOLO identificando objetos e aplicando uma máscara que remove o fundo.
+   - **Vantagens**: Alta precisão e capacidade de segmentação dinâmica em vídeos ao vivo.
+   - **Limitações**: Exige mais recursos computacionais, especialmente em dispositivos de menor capacidade.
 
-2. **Converter para Escala de Cinza**:
-    - Transformar cada imagem em tons de cinza para simplificar o processamento.
+### 2. **Código com rembg**
+   - **Descrição**: O `rembg` usa redes neurais para segmentação, projetado para separar o primeiro plano do fundo em imagens estáticas.
+   - **Processo**: As imagens são enviadas ao `rembg`, que retorna uma versão da imagem sem o fundo.
+   - **Vantagens**: Boa precisão e rápido em imagens estáticas com fundos uniformes.
+   - **Limitações**: Pode ter dificuldade em imagens com baixo contraste entre o objeto e o fundo.
 
-3. **Aplicar Filtro de Suavização (Opcional)**:
-    - Aplicar um filtro de suavização, como o GaussianBlur, para reduzir o ruído que possa dificultar a segmentação.
+### 3. **Código com GrabCut**
+   - **Descrição**: GrabCut usa um modelo de cores para segmentação, ideal para isolar objetos com contornos bem definidos.
+   - **Processo**: Após uma máscara preliminar, o algoritmo refina a segmentação com iterações para isolar o objeto de interesse.
+   - **Vantagens**: Boa qualidade de segmentação com ajustes manuais mínimos.
+   - **Limitações**: Pode requerer ajuste inicial para definir o objeto de interesse.
 
-4. **Segmentação do Objeto de Interesse**:
-    - Utilizar técnicas como limiarização (thresholding) para distinguir o objeto do fundo, ajustando os valores para captar o contraste desejado.
-    - Alternativamente, o algoritmo Canny pode ser usado para detectar bordas e identificar contornos.
+### 4. **Código com Limiarização Adaptativa**
+   - **Descrição**: Técnica que aplica limiares locais para segmentação, ideal para lidar com iluminação variada.
+   - **Processo**: Cada imagem é convertida para tons de cinza, e limiares adaptativos são aplicados para separar o objeto do fundo.
+   - **Vantagens**: Simples e rápido, adequado para imagens com contrastes médios.
+   - **Limitações**: Menor precisão para objetos complexos ou detalhes finos.
 
-5. **Refinamento com Morfologia (Opcional)**:
-    - Aplicar operações morfológicas (dilatação ou erosão) para melhorar o contorno do objeto e assegurar que o fundo seja bem isolado.
+### 5. **Código com Limiarização Simples**
+   - **Descrição**: Técnica básica que usa um único limiar para separar o objeto do fundo em imagens de alto contraste.
+   - **Processo**: Aplicação direta de um valor de limiar em escala de cinza para obter uma máscara binária.
+   - **Vantagens**: Rápido e direto, bom para objetos com contrastes definidos.
+   - **Limitações**: Eficácia limitada em imagens com baixa diferença entre objeto e fundo.
 
-6. **Remover o Fundo**:
-    - Com base na máscara criada, remover ou reduzir a visibilidade do fundo, mantendo apenas o objeto de interesse na imagem final.
+## Comparação dos Resultados
+Após testes, o método com YOLO em tempo real apresentou o melhor desempenho em precisão e adaptabilidade a diferentes cenários. O `rembg` foi eficaz para imagens estáticas com planos de fundo simples, enquanto o GrabCut forneceu segmentações precisas com ajustes mínimos. As técnicas de limiarização apresentaram resultados mais limitados e são recomendadas para casos com contraste elevado entre objeto e fundo.
 
-7. **Salvar e Exibir os Resultados**:
-    - Salvar as imagens com o fundo removido e exibi-las para verificação.
+### Conclusão
+A técnica com YOLO é ideal para aplicações que exigem alta precisão e segmentação em tempo real. `rembg` e GrabCut representam alternativas eficazes para imagens estáticas. As técnicas de limiarização são opções rápidas para cenários com contraste bem definido.
 
 ## Ferramentas Necessárias
-- **Python 3.x**
-- **Biblioteca OpenCV** para manipulação e processamento de imagens.
-- **Biblioteca NumPy** para manipulação de matrizes e operações matemáticas.
+- **Python 3.8.18**
+- **OpenCV** para processamento de imagem e vídeo.
+- **NumPy** para operações com arrays.
+- **YOLO** e **rembg** para segmentação baseada em IA.
 
 ## Como Executar o Código
 1. Certifique-se de que Python e as bibliotecas necessárias estão instaladas.
-2. Execute o código principal (ex: `remocao_fundo.py`), que executará as etapas do algoritmo descrito.
-3. Revise as imagens resultantes para verificar a remoção de fundo.
+2. Execute os scripts:
+   - `main.ipynb`: Script de remoção de fundo em imagens e vídeos.
+   - `grab2.py`: Script com a técnica GrabCut.
+   - `rembgtest.py`: Script que utiliza a biblioteca rembg.
+   - `removefundovideo.py`: Script para remoção de fundo em vídeos usando YOLO em tempo real.
+3. Revise os resultados para verificar a eficácia de cada método.
 
 ## Estrutura de Arquivos
-- `imagens/`: Contém as imagens de entrada para o processamento.
-- `resultados/`: Diretório onde serão salvas as imagens processadas com o fundo removido.
-- `remocao_fundo.py`: Script principal contendo o código para remoção de fundo.
-
+- `ImagensPDI/`: Contém as imagens de entrada para processamento.
+- `resultado/`: Diretório para as imagens e vídeos processados com fundo removido.
+- `main.ipynb`: Script principal para análise de imagens e vídeos.
+- `grab2.py`: Script específico para remoção de fundo com GrabCut.
+- `rembgtest.py`: Script específico para remoção de fundo com `rembg`.
+- `removefundovideo.py`: Script específico para remoção de fundo em tempo real com YOLO.
